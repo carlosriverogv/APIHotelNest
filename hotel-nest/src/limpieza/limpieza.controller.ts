@@ -1,3 +1,4 @@
+// eslint-disable-next-line prettier/prettier
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { LimpiezaService } from './limpieza.service';
 import { CreateLimpiezaDto } from './dto/create-limpieza.dto';
@@ -23,6 +24,7 @@ export class LimpiezaController {
   }
 
   @Patch(':id')
+  // eslint-disable-next-line prettier/prettier
   update(@Param('id') id: string, @Body() updateLimpiezaDto: UpdateLimpiezaDto) {
     return this.limpiezaService.update(+id, updateLimpiezaDto);
   }
