@@ -13,6 +13,18 @@ export class LimpiezaController {
     return this.limpiezaService.create(createLimpiezaDto);
   }
 
+  // Buscar limpiezas por id de habitación
+  @Get(':id')
+  findAllByRoomId(@Param('id') id: string) {
+    return this.limpiezaService.findAllByRoomId(id);
+  }
+
+  // Verificar si una habitación está limpia
+  @Get('limpia/:id')
+  isClean(@Param('id') id: string) {
+    return this.limpiezaService.isClean(id);
+  }
+
   @Get()
   findAll() {
     return this.limpiezaService.findAll();
