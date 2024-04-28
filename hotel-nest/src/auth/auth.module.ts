@@ -10,8 +10,8 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.register({
       // Para no tener que importar el módulo en cada componente
       global: true,
-      // Palabra secreta
-      secret: process.env.SECRETO,
+      // Palabra secreta (No he conseguido que funcione leyendo de .env)
+      secret: 'patata',
       signOptions: { expiresIn: '2h' },
     }),
   ],
