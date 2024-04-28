@@ -1,6 +1,7 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+@Schema()
 export class Habitacion extends Document {
   @Prop({
     required: true,
@@ -18,7 +19,7 @@ export class Habitacion extends Document {
   @Prop({
     required: true,
   })
-  descrpcion: string;
+  descripcion: string;
 
   @Prop({
     required: true,
