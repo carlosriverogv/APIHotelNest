@@ -13,5 +13,6 @@ import { UsuarioSchema } from './entities/usuario.entity';
     ]),
   ],
   providers: [UsuarioService],
+  exports: [UsuarioService],
 })
 export class UsuarioModule {}
