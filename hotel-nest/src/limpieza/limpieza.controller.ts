@@ -1,8 +1,9 @@
 // eslint-disable-next-line prettier/prettier
-import { Controller, Get, Post, Body, Patch, Param, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
 import { LimpiezaService } from './limpieza.service';
 import { CreateLimpiezaDto } from './dto/create-limpieza.dto';
 import { UpdateLimpiezaDto } from './dto/update-limpieza.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('limpieza')
 @UsePipes(ValidationPipe)
@@ -10,6 +11,7 @@ export class LimpiezaController {
   constructor(private readonly limpiezaService: LimpiezaService) {}
 
   // Crear nueva limpieza
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createLimpiezaDto: CreateLimpiezaDto) {
     return this.limpiezaService.create(createLimpiezaDto);
@@ -34,6 +36,7 @@ export class LimpiezaController {
   }
 
   // Actualizar limpieza
+  @UseGuards(AuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
