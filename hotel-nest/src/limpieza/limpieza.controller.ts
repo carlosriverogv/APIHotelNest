@@ -1,13 +1,15 @@
 // eslint-disable-next-line prettier/prettier
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, UsePipes, ValidationPipe } from '@nestjs/common';
 import { LimpiezaService } from './limpieza.service';
 import { CreateLimpiezaDto } from './dto/create-limpieza.dto';
 import { UpdateLimpiezaDto } from './dto/update-limpieza.dto';
 
 @Controller('limpieza')
+@UsePipes(ValidationPipe)
 export class LimpiezaController {
   constructor(private readonly limpiezaService: LimpiezaService) {}
 
+  // Crear nueva limpieza
   @Post()
   create(@Body() createLimpiezaDto: CreateLimpiezaDto) {
     return this.limpiezaService.create(createLimpiezaDto);
@@ -25,24 +27,18 @@ export class LimpiezaController {
     return this.limpiezaService.isClean(id);
   }
 
-  @Get()
-  findAll() {
-    return this.limpiezaService.findAll();
+  // No se porque da error al llamar a limpias, no he conseguido solucionarlo
+  @Get('limpias')
+  findCleanToday() {
+    return this.limpiezaService.findCleanToday();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.limpiezaService.findOne(+id);
-  }
-
+  // Actualizar limpieza
   @Patch(':id')
-  // eslint-disable-next-line prettier/prettier
-  update(@Param('id') id: string, @Body() updateLimpiezaDto: UpdateLimpiezaDto) {
-    return this.limpiezaService.update(+id, updateLimpiezaDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.limpiezaService.remove(+id);
+  update(
+    @Param('id') id: string,
+    @Body() updateLimpiezaDto: UpdateLimpiezaDto,
+  ) {
+    return this.limpiezaService.update(id, updateLimpiezaDto);
   }
 }

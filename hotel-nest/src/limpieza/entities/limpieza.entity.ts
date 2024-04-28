@@ -5,7 +5,7 @@ import mongoose, { Document } from 'mongoose';
 export class Limpieza extends Document {
   @Prop({
     required: true,
-    ref: 'habitaciones',
+    ref: 'Habitacion',
   })
   habitacion: mongoose.Schema.Types.ObjectId;
 
