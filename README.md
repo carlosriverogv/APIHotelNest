@@ -12,5 +12,5 @@ Proyecto de una API REST sencilla utilizando Nest.js basado en la gestión de la
 ## Distribución de trabajo :pick:
 
 - Parte 1  
-  - Tarea 1: definición base del proyecto Nest (**Carlos**)
-  - Tarea 2: entidades y esquemas (**Liam**)
+  - Tarea 1: Definición base del proyecto Nest (**Carlos**)
+  - Tarea 2: Autenticación por tokens (**Liam**)
