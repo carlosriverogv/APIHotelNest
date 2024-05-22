@@ -17,6 +17,12 @@ export class LimpiezaController {
     return this.limpiezaService.create(createLimpiezaDto);
   }
 
+  // Buscar las habitaciones limpiadas hoy
+  @Get('limpias')
+  findCleanToday() {
+    return this.limpiezaService.findCleanToday();
+  }
+
   // Buscar limpiezas por id de habitación
   @Get(':id')
   findAllByRoomId(@Param('id') id: string) {
@@ -27,12 +33,6 @@ export class LimpiezaController {
   @Get('limpia/:id')
   isClean(@Param('id') id: string) {
     return this.limpiezaService.isClean(id);
-  }
-
-  // No se porque da error al llamar a limpias, no he conseguido solucionarlo
-  @Get('limpias')
-  findCleanToday() {
-    return this.limpiezaService.findCleanToday();
   }
 
   // Actualizar limpieza
