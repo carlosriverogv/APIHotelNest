@@ -23,6 +23,12 @@ export class LimpiezaController {
     return this.limpiezaService.findCleanToday();
   }
 
+  // Buscar las habitaciones sucias
+  @Get('sucias')
+  findDirtyRooms() {
+    return this.limpiezaService.findDirtyRooms();
+  }
+
   // Buscar limpiezas por id de habitación
   @Get(':id')
   findAllByRoomId(@Param('id') id: string) {

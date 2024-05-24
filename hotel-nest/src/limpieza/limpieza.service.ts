@@ -203,4 +203,29 @@ export class LimpiezaService {
       );
     }
   }
+
+  // Devulve un listado de las habitaciones que están sucias, considerando sucias las que
+  // su fecha de ultimaLimpieza sea anterior a la fecha actual formateada a 00:00:00
+  async findDirtyRooms(): Promise<Habitacion[]> {
+    try {
+      const fechaActualSinHoras = new Date();
+      fechaActualSinHoras.setHours(0, 0, 0, 0);
+
+      const habitaciones = await this.habitacionModel.find({
+        ultimaLimpieza: {
+          $lte: fechaActualSinHoras,
+        },
+      });
+
+      return habitaciones || [];
+    } catch (error) {
+      throw new HttpException(
+        {
+          ok: false,
+          error: 'Error buscando habitaciones',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
 }
